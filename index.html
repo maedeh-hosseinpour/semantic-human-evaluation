@@ -131,6 +131,7 @@
         }
 
         
+        
         function startTask() {
             const prolificId = document.getElementById("participantId")
                 .value.trim();
@@ -139,17 +140,12 @@
                 return;
             }
 
-            const fixedIds = [4, 10, 16, 93, 94];
-
-            const excludedIds = [4, 10, 16, 93, 94, 9];
-
-            const availableIds = SENTENCE_PAIRS
-                .map(p => p.id)
-                .filter(id => !excludedIds.includes(id));
-
+            const availableIds = SENTENCE_PAIRS.map(p => p.id);
             const randomIds = shuffle(availableIds).slice(0, 15);
 
-            const selectedIds = shuffle([...fixedIds, ...randomIds]);
+            const fixedIds = ATTENTION_CHECKS.map(p => p.id);
+
+            const selectedIds = shuffle([...randomIds, ...fixedIds]);
 
             const study = {
                 prolificId: prolificId,
@@ -173,7 +169,7 @@
             }
 
             const id = study.order[study.pairIndex];
-            const pair = SENTENCE_PAIRS.find(p => p.id === id);
+            const pair = SENTENCE_PAIRS.find(p => p.id === id) || ATTENTION_CHECKS.find(p => p.id === id);
 
             document.getElementById("id-input-section")
                 .style.display = "none";
