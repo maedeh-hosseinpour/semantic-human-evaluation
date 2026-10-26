@@ -2,7 +2,7 @@ const ATTENTION_CHECKS = [
     { id: 100, original: "He was making money into impractical kites, and skipping gold pieces across the pond instead of stones", modified: "He was making money into realistic kites, and skipping gold pieces across the pond instead of stones" },
     { id: 200, original: "The child was frightened by the loud noise.", modified: "The child was excited by the loud noise." },
     { id: 300, original: "He did not squander his money as a matter of parsimony.", modified: "He did not squander his money as a matter of parsimony." },
-    { id: 400, original: "He did not squander his money as a matter of parsimony.", modified: "He did not hoard his money as a matter of parsimony." },
+    { id: 400, original: "He did not squander his money as a matter of parsimony.", modified: "He hoarded his money as a matter of parsimony." },
     { id: 500, original: "The knight is standing in a quiet queue.", modified: "The knight is walking in a quiet queue." }]
 
 
