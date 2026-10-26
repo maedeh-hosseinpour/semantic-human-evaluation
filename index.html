@@ -10,7 +10,7 @@
 <body>
 
     <div id="id-input-section">
-        <h2>Please enter a valid 22-24 character Prolific ID:</h2>
+        <h2>Please enter a valid 22–24 character Prolific ID:</h2>
 
         <input type="text" id="participantId"
                placeholder="Enter your Prolific ID"
@@ -224,7 +224,7 @@
                 const study = getStudy();
 
                 const id = study.order[study.pairIndex];
-                const pair = SENTENCE_PAIRS.find(p => p.id === id);
+                const pair = SENTENCE_PAIRS.find(p => p.id === id) || ATTENTION_CHECKS.find(p => p.id === id);
 
                 const end = new Date().toISOString();
 
