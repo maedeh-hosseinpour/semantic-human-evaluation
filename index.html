@@ -176,8 +176,34 @@
                 return;
             }
 
-            const id = study.order[study.pairIndex];
-            const pair = SENTENCE_PAIRS.find(p => p.id === id) || ATTENTION_CHECKS.find(p => p.id === id);
+            let id = study.order[study.pairIndex];
+
+            let pair = SENTENCE_PAIRS.find(p => Number(p.id) === Number(id))
+                || ATTENTION_CHECKS.find(p => Number(p.id) === Number(id));
+            
+            if (!pair) {
+                console.warn("Sentence pair not found:", id);
+            
+                const usedIds = new Set(study.order.map(Number));
+            
+                const candidates = Number(id) >= 100
+                    ? ATTENTION_CHECKS
+                    : SENTENCE_PAIRS;
+            
+                const replacement = candidates.find(
+                    p => !usedIds.has(Number(p.id))
+                );
+            
+                if (replacement) {
+                    study.order[study.pairIndex] = replacement.id;
+                    setStudy(study);
+                    pair = replacement;
+                } else {
+                    alert("A question could not be loaded. Your previous answers are saved. Please contact the researcher.");
+                    document.getElementById("main-task").style.display = "none";
+                    return;
+                }
+            }
 
             document.getElementById("id-input-section")
                 .style.display = "none";
